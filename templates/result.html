@@ -1,0 +1,180 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction Result</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ffefba, #ffffff); /* Colorful gradient background */
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50; /* Darker header color for professionalism */
+            margin-top: 30px;
+            font-size: 32px; /* Larger header for emphasis */
+            font-weight: bold;
+            border-bottom: 4px solid #2980b9; /* Underline for emphasis with a blue color */
+            padding-bottom: 10px;
+        }
+        .result-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff; /* White background for the report */
+            padding: 30px;
+            border-radius: 10px; /* Rounded corners for modern look */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Deeper shadow for depth */
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two-column layout */
+            gap: 20px; /* Space between grid items */
+            position: relative; /* Added for absolute positioning */
+        }
+        /* New CSS for the result in the upper-right corner */
+        .prediction-result {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 6px;
+            background-color: #f8f9fa; /* Light background for result */
+            border-left: 5px solid; /* Left border for emphasis */
+        }
+        .prediction-positive {
+            color: red; /* Color for positive prediction (diabetic) */
+            border-color: red; /* Match border with text color */
+        }
+        .prediction-negative {
+            color: green; /* Color for negative prediction (not diabetic) */
+            border-color: green; /* Match border with text color */
+        }
+        .result-data {
+            padding: 20px;
+            border-radius: 6px;
+            background-color: #f8f9fa; /* Light gray background for data entries */
+            border-left: 5px solid #2980b9; /* Blue left border for emphasis */
+            color: #34495e; /* Dark gray text for readability */
+        }
+        .result-data label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 15px; /* Slightly larger font size for labels */
+            color: #2980b9; /* Consistent color for labels */
+        }
+        .result-data span {
+            display: block;
+            margin-bottom: 12px;
+            font-size: 16px; /* Larger font for values */
+        }
+        .buttons {
+            grid-column: span 2; /* Make buttons span across both columns */
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 12px 18px;
+            font-size: 16px; /* Larger font size for buttons */
+            border: none;
+            border-radius: 6px; /* Rounded corners for buttons */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for buttons */
+        }
+        .print-btn {
+            background-color: #28a745; /* Green button color */
+            color: white;
+        }
+        .print-btn:hover {
+            background-color: #218838; /* Darker green shade on hover */
+            transform: scale(1.05); /* Slight scaling effect */
+        }
+        .back-btn {
+            background-color: #dc3545; /* Red button color */
+            color: white;
+        }
+        .back-btn:hover {
+            background-color: #c82333; /* Darker shade on hover */
+            transform: scale(1.05); /* Slight scaling effect */
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d; /* Footer color */
+            font-size: 12px;
+            border-top: 1px solid #ccc; /* Divider line */
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diabetes Prediction Report</h1>
+    <div class="result-container">
+        <!-- Prediction Result in the Upper Right Corner -->
+        <div class="prediction-result {{ 'prediction-positive' if prediction == 'Positive' else 'prediction-negative' }}">
+            Prediction: {{ prediction }}
+        </div>
+
+        <div class="result-data">
+            <label>Patient Name:</label>
+            <span>{{ name }}</span>
+        </div>
+        <div class="result-data">
+            <label>Age:</label>
+            <span>{{ age }}</span>
+        </div>
+        <div class="result-data">
+            <label>Sex:</label>
+            <span>{{ sex }}</span>
+        </div>
+        <div class="result-data">
+            <label>Pregnancies:</label>
+            <span>{{ pregnancies }}</span>
+        </div>
+        <div class="result-data">
+            <label>Glucose:</label>
+            <span>{{ glucose }}</span>
+        </div>
+        <div class="result-data">
+            <label>Blood Pressure:</label>
+            <span>{{ bloodpressure }}</span>
+        </div>
+        <div class="result-data">
+            <label>Skin Thickness:</label>
+            <span>{{ skinthickness }}</span>
+        </div>
+        <div class="result-data">
+            <label>Insulin:</label>
+            <span>{{ insulin }}</span>
+        </div>
+        <div class="result-data">
+            <label>BMI:</label>
+            <span>{{ bmi }}</span>
+        </div>
+        <div class="result-data">
+            <label>Diabetes Pedigree Function:</label>
+            <span>{{ diabetespedigreefunction }}</span>
+        </div>
+        <div class="result-data">
+            <label>Report Date & Time:</label>
+            <span>{{ report_datetime }}</span>
+        </div>
+        <div class="result-data">
+            <label>Testing Time:</label>
+            <span>{{ testing_time }} seconds</span>
+        </div>
+        <div class="buttons">
+            <button class="back-btn" onclick="window.history.back()">Back</button>
+            <button class="print-btn" onclick="window.print()">Print</button>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2024 Samir Chandra Debnath. All Rights Reserved.
+    </div>
+</body>
+</html>

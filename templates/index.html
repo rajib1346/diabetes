@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f0fe;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;  /* Darker color for better readability */
+            margin-top: 30px;
+            font-size: 32px;
+            font-weight: bold;
+        }
+        .form-container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .container .column {
+            width: 32%;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 16px;
+            border: 2px solid #d1d1e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        input:focus, select:focus {
+            border-color: #1a73e8;
+            outline: none;
+            box-shadow: 0 0 8px rgba(26, 115, 232, 0.5);
+        }
+        label {
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+        }
+        button {
+            padding: 8px 12px;  /* Adjusted padding for regular button size */
+            font-size: 14px;     /* Smaller font size */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .reset-btn {
+            background-color: #ff5252;
+            color: #fff;
+        }
+        .reset-btn:hover {
+            background-color: #ff1744;
+            transform: scale(1.05);
+        }
+        .submit-btn {
+            background-color: #00c853;
+            color: white;
+        }
+        .submit-btn:hover {
+            background-color: #00e676;
+            transform: scale(1.05);
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .buttons button {
+            width: auto;  /* Button width set to auto to fit text */
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 50px;
+            color: #777;
+            font-size: 14px;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1a73e8 0%, #34a853 100%);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Gradient Background for Title -->
+    <div class="gradient-bg">
+        <h1>Diabetes Prediction Form</h1>
+    </div>
+
+    <!-- Main Form Container -->
+    <div class="form-container">
+        <!-- Form starts here -->
+        <form action="/submit" method="POST">
+            <!-- First container: name, age, sex -->
+            <div class="container">
+                <div class="column">
+                    <label for="name">Patient Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter full name" required>
+                </div>
+                <div class="column">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" placeholder="Enter age" required>
+                </div>
+                <div class="column">
+                    <label for="sex">Sex:</label>
+                    <select id="sex" name="sex">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Second container: grid with inputs -->
+            <div class="grid-container">
+                <!-- First Column -->
+                <div>
+                    <label for="pregnancies">Pregnancies:</label>
+                    <input type="number" id="pregnancies" name="pregnancies" placeholder="Enter pregnancies" required>
+
+                    <label for="glucose">Glucose:</label>
+                    <input type="number" id="glucose" name="glucose" placeholder="Enter glucose level" required>
+
+                    <label for="bloodpressure">Blood Pressure:</label>
+                    <input type="number" id="bloodpressure" name="bloodpressure" placeholder="Enter blood pressure" required>
+                </div>
+
+                <!-- Second Column -->
+                <div>
+                    <label for="skinthickness">Skin Thickness:</label>
+                    <input type="number" id="skinthickness" name="skinthickness" placeholder="Enter skin thickness" required>
+
+                    <label for="insulin">Insulin:</label>
+                    <input type="number" id="insulin" name="insulin" placeholder="Enter insulin level" required>
+
+                    <label for="bmi">BMI:</label>
+                    <input type="number" step="0.01" id="bmi" name="bmi" placeholder="Enter BMI" required>
+                </div>
+
+                <!-- Third Column -->
+                <div>
+                    <label for="diabetespedigreefunction">Diabetes Pedigree Function:</label>
+                    <input type="number" step="0.01" id="diabetespedigreefunction" name="diabetespedigreefunction" placeholder="Enter diabetes pedigree function" required>
+                </div>
+            </div>
+
+            <!-- Buttons for Submit and Reset -->
+            <div class="buttons">
+                <button type="reset" class="reset-btn">Reset</button>
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
+        <!-- Form ends here -->
+    </div>
+
+    <!-- Copyright -->
+    <div class="copyright">
+        &copy; 2024 Samir Chandra Debnath. All Rights Reserved.
+    </div>
+</body>
+</html>

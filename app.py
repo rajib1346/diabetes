@@ -7,7 +7,7 @@ import numpy as np
 app = Flask(__name__)
 
 # Load the trained model (make sure the .pkl file is in the specified path)
-model = pickle.load(open('C:/Users/acer/Diabetes Prediction/Model/diabetes_nb_model.pkl', 'rb'))
+model = pickle.load(open('Models/diabetes_nb_model.pkl', 'rb'))
 
 @app.route('/')
 def index():
